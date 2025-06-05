@@ -5,12 +5,21 @@ function Header({course}) {
 }
 
 
-function Content({parts, exercises}) {
+function Content({parts}) {
   return (
     <div>
-      <p>{parts[0]} {exercises[0]}</p>
-      <p>{parts[1]} {exercises[1]}</p>
-      <p>{parts[2]} {exercises[2]}</p>
+      <Part part = {parts[0]}/>
+      <Part part = {parts[1]}/>
+      <Part part = {parts[2]}/>
+    </div>
+  )
+}
+
+
+function Part ({part}) {
+  return(
+    <div>
+      <p> {part.name} {part.number}</p>
     </div>
   )
 }
@@ -28,7 +37,11 @@ function Total({ total }) {
 const App = () => {
   const course = 'Half Stack application development'
   const exercises = [10, 7, 14]
-  const parts = ['Fundamentals of React', 'Using props to pass data', 'State of a component']
+  const parts = [
+    {name: 'Fundamentals of React', number: 10}, 
+    {name: 'Using props to pass data', number:7}, 
+    {name: 'State of a component', number:14},
+    ]
 
   return (
     <div>
