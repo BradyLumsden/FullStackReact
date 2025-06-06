@@ -6,12 +6,16 @@ function Statistics({good, neutral, bad}){
     return( 
       <>
         <h1>Statistics</h1>
-        <StatisticLine  text = "Good:" value = {good}/>
-        <StatisticLine  text = "Neutral:" value = {neutral}/>
-        <StatisticLine  text = "Bad:" value = {bad}/>
-        <StatisticLine  text = "All:" value = {good + bad + neutral}/>
-        <StatisticLine  text = "Average:" value = {(good*1 + bad*(-1))/(good + bad + neutral)}/>
-        <StatisticLine  text = "Positive:" value = {(good/(good+bad+neutral))*100 + "%"}/>
+        <table>
+          <tbody>
+          <StatisticLine  text = "Good:" value = {good}/>
+          <StatisticLine  text = "Neutral:" value = {neutral}/>
+          <StatisticLine  text = "Bad:" value = {bad}/>
+          <StatisticLine  text = "All:" value = {good + bad + neutral}/>
+          <StatisticLine  text = "Average:" value = {(good*1 + bad*(-1))/(good + bad + neutral)}/>
+          <StatisticLine  text = "Positive:" value = {(good/(good+bad+neutral))*100 + "%"}/>
+          </tbody>
+        </table>
       </>
     )
   }
@@ -20,7 +24,10 @@ function Statistics({good, neutral, bad}){
 
 function StatisticLine  ({text, value}){
   return (
-    <p>{text} {value}</p>
+    <tr>
+      <td>{text}</td>
+      <td>{value}</td>
+    </tr>
   )
 }
 
