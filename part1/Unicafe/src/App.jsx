@@ -6,17 +6,30 @@ function Statistics({good, neutral, bad}){
     return( 
       <>
         <h1>Statistics</h1>
-        <p>Good: {good} </p>
-        <p>Neutral: {neutral} </p>
-        <p>Bad: {bad} </p>
-        <p>All: {good + bad + neutral}</p>
-        <p>Average: {(good*1 + bad*(-1))/(good + bad + neutral)}</p>
-        <p>Positive: {(good/(good+bad+neutral))*100}%</p>
+        <StatisticLine  text = "Good:" value = {good}/>
+        <StatisticLine  text = "Neutral:" value = {neutral}/>
+        <StatisticLine  text = "Bad:" value = {bad}/>
+        <StatisticLine  text = "All:" value = {good + bad + neutral}/>
+        <StatisticLine  text = "Average:" value = {(good*1 + bad*(-1))/(good + bad + neutral)}/>
+        <StatisticLine  text = "Positive:" value = {(good/(good+bad+neutral))*100 + "%"}/>
       </>
     )
   }
   return <p>No feedback, no Stats</p>
+}
 
+function StatisticLine  ({text, value}){
+  return (
+    <p>{text} {value}</p>
+  )
+}
+
+function Button ( prop ){
+  return(
+    <button onClick={prop.onClick}>
+      {prop.text}
+    </button>
+  )
 }
 
 const App = () => {
@@ -29,12 +42,11 @@ const App = () => {
     <div>
       <h1>Give Feedback :D</h1>
       
-      <button onClick={() => setGood(good + 1)}>Good :)</button>
-      <button onClick={() => setNeutral(neutral + 1)}>Neutral :/</button>
-      <button onClick={() => setBad(bad + 1)}>Bad D:</button>
+      <Button onClick={() => setGood(good + 1)} text = "Good :)" />
+      <Button onClick={() => setNeutral(neutral + 1)} text = "Neutral :/"/>
+      <Button onClick={() => setBad(bad + 1)} text = "Bad D:"/>
       
       <Statistics good={good} neutral={neutral} bad={bad}/>
-
     </div>
   )
 }
