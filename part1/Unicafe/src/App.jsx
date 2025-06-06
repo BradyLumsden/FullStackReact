@@ -1,43 +1,27 @@
-import { useState } from "react"
-
-const History = (props) => {
-  if (props.allClicks.length === 0) {
-    return (
-      <div>
-        the app is used by pressing the buttons
-      </div>
-    )
-  }
-  return (
-    <div>
-      button press history: {props.allClicks.join(' ')}
-    </div>
-  )
-}
-
-const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>
-
-const Display = props => <div>{props.value}</div> 
+import { useState } from 'react'
 
 const App = () => {
-  const [value, setValue] = useState(10)
-  
-  const setToValue = (newValue) => () => {
-    console.log('value now', newValue)  // print the new value to console
-    setValue(newValue)
-  }
-  
-
+  // save clicks of each button to its own state
+  const [good, setGood] = useState(0)
+  const [neutral, setNeutral] = useState(0)
+  const [bad, setBad] = useState(0)
 
   return (
     <div>
-      <Display value={value}></Display>
-      <button onClick={setToValue(1000)}>thousand</button>
-      <button onClick={setToValue(0)}>reset</button>
-      <button onClick={setToValue(value + 1)}>increment</button>
+      <h1>Give Feedback :D</h1>
+      
+      <button onClick={() => setGood(good + 1)}>Good :)</button>
+      <button onClick={() => setNeutral(neutral + 1)}>Neutral :/</button>
+      <button onClick={() => setBad(bad + 1)}>Bad D:</button>
+      
+      
+      <h1>Statistics</h1>
+      <p>Good: {good}</p>
+      <p>Neutral: {neutral}</p>
+      <p>Bad: {bad}</p>
+
     </div>
   )
 }
-
 
 export default App
