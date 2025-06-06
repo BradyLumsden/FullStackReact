@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
-function Randomint(){
-  return Math.floor(Math.random() * 7)
+function Randomint() {
+  return Math.floor(Math.random() * 8);
 }
 
 const App = () => {
@@ -14,16 +14,28 @@ const App = () => {
     'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.',
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.',
     'The only way to go fast, is to go well.'
-  ]
-   
-  const [selected, setSelected] = useState(0)
+  ];
+
+  const [votes, setVotes] = useState(Array(anecdotes.length).fill(0));
+  const [selected, setSelected] = useState(0);
+
+  const addVote = () => {
+    setVotes(prevVotes => {
+      const newVotes = { ...prevVotes };
+      newVotes[selected] += 1;
+      return newVotes;
+    });
+  };
 
   return (
     <div>
       <h1>{anecdotes[selected]}</h1>
-      <button onClick={() => setSelected(Randomint())}>get new annecdote</button>
-    </div>
-  )
-}
+      <h1>Votes: {votes[selected]}</h1>
 
-export default App
+      <button onClick={() => setSelected(Randomint())}>Get new anecdote</button>
+      <button onClick={addVote}>Vote</button>
+    </div>
+  );
+};
+
+export default App;
